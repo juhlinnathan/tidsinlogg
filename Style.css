@@ -1,0 +1,99 @@
+/* Grundläggande styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    background: white;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+/* Apply a scroll-locked wallpaper */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-image: url('bluefade.jpg'); /* Replace with your wallpaper URL */
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Locks the background during scrolling */
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent overlay for readability */
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for readability */
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+

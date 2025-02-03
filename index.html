@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrativ Tidsloggning</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Grundläggande styling för sidan */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        /* Döljer sektionerna för anställda och arbeten från början */
+        #main-menu {
+            margin-top: 20px;
+        }
+        #employee-section, #work-section {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Välkommen till tidsloggning</h1>
+    
+    <!-- Huvudmeny -->
+    <div id="main-menu">
+        <button onclick="showEmployeeSection()">Hantera Anställda</button>
+        <button onclick="showWorkSection()">Hantera Arbeten</button>
+    </div>
+    
+    <!-- Sektion för att hantera anställda -->
+    <div id="employee-section">
+        <h2>Hantera Anställda</h2>
+        <button onclick="createEmployee()">Skapa Anställd</button>
+        <button onclick="showEmployees()">Visa Alla Anställda</button>
+        <button onclick="showEmployee()">Visa Enskild Anställd</button>
+        <button onclick="editEmployee()">Redigera Anställd</button>
+        <button onclick="deleteEmployee()">Ta Bort Anställd</button>
+        <button onclick="goBack()">Tillbaka</button>
+    </div>
+
+    <!-- Sektion för att hantera arbeten -->
+    <div id="work-section">
+        <h2>Hantera Arbeten</h2>
+        <button onclick="createWork()">Registrera Tid</button>
+        <button onclick="showAllRegisteredTimes()">Visa Alla Arbeten</button>
+        <button onclick="showWork()">Visa Enskilt Arbete</button>
+        <button onclick="editRegisteredTime()">Redigera Arbete</button>
+        <button onclick="deleteLastRegisteredTime()">Ta Bort Arbete</button>
+        <button onclick="goBack()">Tillbaka</button>
+    </div>
+    
+    <script>
+        let employees = []; // Lista över anställda
+        let works = []; // Lista över arbeten
+        
+        /* Funktion för att visa sektionen för anställda */
+        function showEmployeeSection() {
+            document.getElementById("main-menu").style.display = "none";
+            document.getElementById("employee-section").style.display = "block";
+        }
+        
+        /* Funktion för att visa sektionen för arbeten */
+        function showWorkSection() {
+            document.getElementById("main-menu").style.display = "none";
+            document.getElementById("work-section").style.display = "block";
+        }
+
+        /* Funktion för att gå tillbaka till huvudmenyn */
+        function goBack() {
+            document.getElementById("employee-section").style.display = "none";
+            document.getElementById("work-section").style.display = "none";
+            document.getElementById("main-menu").style.display = "block";
+        }
+    
+        /* Funktion för att skapa ett nytt arbete */
+        function createWork() {
+            let employeeId = prompt("Ange ID för anställd att registrera tid:");
+            let employee = employees.find(e => e.id == employeeId);
+            if (!employee) {
+                alert("Ingen anställd hittades.");
+                return;
+            }
+            let time = prompt("Ange arbetad tid i timmar:");
+            let date = new Date().toLocaleDateString();
+            works.push({ employeeId, time, date });
+            alert("Tid registrerad!");
+        }
+
+        /* Funktion för att visa alla registrerade arbeten */
+        function showAllRegisteredTimes() {
+            if (works.length === 0) {
+                alert("Inga registrerade tider finns.");
+                return;
+            }
+            let output = "Alla registrerade tider:\n";
+            works.forEach(work => {
+                let employee = employees.find(e => e.id == work.employeeId);
+                output += `Anställd: ${employee ? employee.name : 'Okänd'}, Tid: ${work.time} timmar, Datum: ${work.date}\n`;
+            });
+            alert(output);
+        }
+
+        /* Funktion för att skapa en anställd */
+        function createEmployee() {
+            let name = prompt("Ange anställds namn:");
+            let birthYear = prompt("Ange anställds födelseår:");
+            if (!name || !birthYear) {
+                alert("Alla fält måste fyllas i.");
+                return;
+            }
+            let id = employees.length + 1;
+            employees.push({ id, name, birthYear });
+            alert("Anställd skapad!");
+        }
+
+        /* Funktion för att visa alla anställda */
+        function showEmployees() {
+            if (employees.length === 0) {
+                alert("Inga anställda finns.");
+                return;
+            }
+            let output = "Alla anställda:\n";
+            employees.forEach(emp => {
+                output += `ID: ${emp.id}, Namn: ${emp.name}, Födelseår: ${emp.birthYear}\n`;
+            });
+            alert(output);
+        }
+    </script>
+</body>
+</html>
