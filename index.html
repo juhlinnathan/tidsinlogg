@@ -129,6 +129,86 @@
             });
             alert(output);
         }
+    
+        /* Funktion för att visa en enskild anställd */
+        function showEmployee() {
+            let employeeId = prompt("Ange ID för anställd:");
+            let employee = employees.find(e => e.id == employeeId);
+            if (!employee) {
+                alert("Ingen anställd hittades.");
+                return;
+            }
+            alert(`ID: ${employee.id}
+Namn: ${employee.name}
+Födelseår: ${employee.birthYear}`);
+        }
+
+        /* Funktion för att redigera en anställd */
+        function editEmployee() {
+            let employeeId = prompt("Ange ID för anställd att redigera:");
+            let employee = employees.find(e => e.id == employeeId);
+            if (!employee) {
+                alert("Ingen anställd hittades.");
+                return;
+            }
+            employee.name = prompt("Ange nytt namn:", employee.name);
+            employee.birthYear = prompt("Ange nytt födelseår:", employee.birthYear);
+            alert("Anställd uppdaterad!");
+        }
+
+        /* Funktion för att ta bort en anställd */
+        function deleteEmployee() {
+            let employeeId = prompt("Ange ID för anställd att ta bort:");
+            let index = employees.findIndex(e => e.id == employeeId);
+            if (index !== -1) {
+                employees.splice(index, 1);
+                alert("Anställd borttagen!");
+            } else {
+                alert("Ingen anställd hittades.");
+            }
+        }
+    
+        /* Funktion för att visa en enskild registrerad tid för en anställd */
+        function showWork() {
+            let employeeId = prompt("Ange ID för anställd vars arbete du vill se:");
+            let employeeWorks = works.filter(work => work.employeeId == employeeId);
+            if (employeeWorks.length === 0) {
+                alert("Ingen registrerad tid hittades.");
+                return;
+            }
+            let output = `Registrerad tid:
+`;
+            employeeWorks.forEach(work => {
+                output += `Tid: ${work.time} timmar, Datum: ${work.date}
+`;
+            });
+            alert(output);
+        }
+
+        /* Funktion för att redigera registrerad tid */
+        function editRegisteredTime() {
+            let employeeId = prompt("Ange ID för anställd vars tid du vill redigera:");
+            let employeeWorks = works.filter(work => work.employeeId == employeeId);
+            if (employeeWorks.length === 0) {
+                alert("Ingen registrerad tid hittades för denna anställda.");
+                return;
+            }
+            let newTime = prompt("Ange ny arbetad tid i timmar:");
+            employeeWorks[employeeWorks.length - 1].time = newTime;
+            alert("Tid uppdaterad!");
+        }
+
+        /* Funktion för att ta bort den senaste registrerade tiden för en anställd */
+        function deleteLastRegisteredTime() {
+            let employeeId = prompt("Ange ID för anställd vars senaste tid du vill ta bort:");
+            let index = works.findIndex(work => work.employeeId == employeeId);
+            if (index !== -1) {
+                works.splice(index, 1);
+                alert("Senaste registrerade tid har tagits bort!");
+            } else {
+                alert("Ingen registrerad tid hittades för denna anställda.");
+            }
+        }
     </script>
 </body>
 </html>
